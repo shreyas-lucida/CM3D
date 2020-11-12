@@ -1,0 +1,232 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    padding-top: 10px;
+    width: 100%;
+    height: 100%;
+    font-family: "Roboto", "Arial", "sans-serif";
+}
+
+@font-face {
+    font-family: "titillium";
+    src: local("titillium"), url(./assets/titillium/TitilliumWeb-Regular.ttf) format("truetype");
+}
+
+* {
+    font-family: "titillium", Arial, Helvetica, sans-serif;
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 4px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #001cb0;
+        border-radius: 50px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #7a7cab;
+        border-radius: 50px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #7a7cab;
+    }
+
+    outline: none;
+}
+
+.scrolling-wrapper {
+    &::-webkit-scrollbar {
+        width: 5px;
+        height: 2px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #001cb0;
+        border-radius: 50px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #7a7cab;
+        border-radius: 50px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: #7a7cab;
+    }
+}
+.site_wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -84px;
+}
+
+.toast {
+    font-size: 0.85rem;
+}
+
+.btn-grey {
+    width: 119px;
+    height: 30px;
+    background: #bbc5d5;
+    color: #322a7d;
+    border-radius: 7px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    &:hover {
+        color: #7a7cab;
+    }
+}
+
+.btn-blue {
+    width: 119px;
+    height: 30px;
+    background: #001cb0;
+    color: white;
+    border-radius: 7px;
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    &:hover {
+        color: white;
+    }
+}
+
+.btn-border {
+    background: transparent;
+    color: #001cb0;
+    border: 1px solid #001cb0;
+    border-radius: 7px;
+}
+
+.btn-white-border {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 7px;
+    width: 119px;
+    height: 40px;
+    font-size: 13px;
+    &:hover {
+        color: white;
+    }
+}
+
+.btn-transparent {
+    background: transparent;
+    color: #bbc5d5;
+    font-size: 13px;
+}
+.btn-transparent:hover {
+    color: #322a7d;
+}
+
+.border-bottom-custom {
+    color: #322a7d;
+    border-bottom: 3px solid #f6a623;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+.btn {
+    box-shadow: none !important;
+}
+.search {
+    input {
+        font-weight: normal;
+        border-radius: 8px;
+        border: 2px solid #001cb0;
+        height: 2.3rem;
+        padding: 0.5rem;
+        padding-left: 2rem;
+        color: #322a7d;
+    }
+    i {
+        position: absolute;
+        padding: 12px;
+        color: #001cb0;
+    }
+}
+
+.font-12px {
+    font-size: 12px;
+}
+
+.disabled-btn {
+    cursor: none;
+}
+@media only screen and (max-width: 900px) {
+    .hide-for-small-screens {
+        display: none;
+    }
+    .top-card {
+        span {
+            font-size: 30px !important;
+        }
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .hide-for-small-screens {
+        display: none;
+    }
+    .top-card {
+        display: flex;
+        img {
+            height: 50px !important;
+            width: 56px !important;
+        }
+        .logo-top {
+            margin: auto !important;
+        }
+        span {
+            font-size: 20px !important;
+        }
+        p {
+            font-size: 20px !important;
+            text-align: center !important;
+        }
+    }
+    .card-details {
+        width: 100% !important;
+    }
+    .scroller {
+        width: 300px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .padding-for-large-screens {
+        padding: 0px 45px
+    }
+    .padding-for-large-screens-reports{
+        padding: 0px 85px
+    }
+    .padding-for-large-screens-reports-search{
+        padding: 0px 145px
+    }
+}
+
+.selected-header{
+    background-color: #001cb0;
+    padding: 10px;
+    border-radius: 10px;
+    p{
+        color: white!important;
+    }
+}

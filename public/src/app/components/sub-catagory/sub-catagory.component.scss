@@ -1,0 +1,134 @@
+.card-details {
+    width: 284px;
+    height: 344px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    background-color: white;
+    .card-blue {
+        background: #001cb0;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        min-height: 104px;
+        img {
+            width: 33px;
+            height: 24px;
+        }
+        p {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .daily-button {
+            margin: 0px;
+            background: white;
+            padding: 0px 2px;
+            border-radius: 4px;
+            color: black;
+            font-size: 11px;
+            text-align: center;
+        }
+        .type-box {
+            position: absolute;
+            bottom: 61.5%;
+            font-size: 13px;
+            background: #00dfed;
+            padding: 2px 9px;
+            color: black;
+            border-top-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            font-weight: 500;
+        }
+    }
+}
+.p-3rem {
+    padding: 0rem 3rem !important;
+}
+
+@media (max-width: 767px) {
+    .p-3rem {
+        padding: 0rem 0rem !important;
+    }
+    .top-card {
+        margin: 2rem 1rem 1rem 1rem !important;
+        height: auto !important;
+        p {
+            font-size: 30px !important;
+        }
+    }
+    .logo-top {
+        display: none;
+    }
+    .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
+
+.color-blue {
+    color: #001cb0;
+}
+.color-purple {
+    color: #6e68a3;
+}
+
+.font-weight-700 {
+    font-weight: 700;
+}
+.font-20px {
+    font-size: 20px;
+}
+
+.font-15px {
+    font-size: 15px;
+    color: #354052;
+    opacity: 0.6;
+    line-height: 1.9;
+    text-align: center;
+    margin-top: 2rem;
+}
+.font-14px{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.modal.show .modal-dialog {
+    max-width: 320px !important;
+}
+
+.top-card {
+    background: transparent linear-gradient(97deg, #001cb0 0%, #00dfed 100%) 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    height: 148px;
+    margin-top: 2rem;
+    .logo-top {
+        height: 116px;
+        width: 122px;
+        margin-right: 1rem;
+    }
+    p{
+        color: white;
+        font-size: 38px;
+        font-weight: 300;
+    }
+}
+.btn-blue{
+    font-size: 14px;
+    height: 36px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+
+}
+
+.border-bottom {
+    border-bottom: 0.1px solid #f6f6f6 !important;
+}
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  
+    .card-scroll {
+      display: inline-block;
+    }
+  }
