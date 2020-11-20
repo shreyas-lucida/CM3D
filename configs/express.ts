@@ -65,7 +65,7 @@ class App {
       this.app.use(cors())
       // -------- CORS configuration
       const origins = [
-         'http://localhost:3000', 'http://localhost:4200', 'http://localhost:8200', 'ionic://localhost', 'http://localhost'
+         'http://localhost:3000', 'http://localhost:4200', 'http://localhost:8200', 'ionic://localhost', 'http://localhost', 'https://cm3dapp.azurewebsites.net'
       ];
 
       this.app.use(function (req, resp, next) {

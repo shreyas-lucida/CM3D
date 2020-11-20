@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { MsalService } from '@azure/msal-angular';
 @Component({
   selector: 'app-sidebar',
@@ -13,24 +14,24 @@ export class SidebarComponent implements OnInit {
   userName = '';
   name: any;
   isAdmin = false;
-  constructor(private router: Router, private _msalService: MsalService) {
+  profile;
+  constructor(private router: Router, private http: HttpClient, private _msalService: MsalService) {
     this.getAuthDetails();
   }
 
   ngOnInit(): void {
+    //add this for AD
     this.sidebarItems.map((eachItem, ind) => {
       if (eachItem.path === this.router.url) {
         this.activeIndex = ind;
       }
     });
-
     const account = this._msalService.getAccount();
     if (account) {
       this.name = account.name;
       this.userName = account.userName;
     }
   }
-
 
   getAuthDetails() {
     const account = (this._msalService.getAccount().idToken as any).roles;

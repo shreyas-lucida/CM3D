@@ -7,6 +7,6 @@ export default class StorageRoutes {
    // define the default route (Path -> '/')
    private setupRoutes(app: any) {
       app.post('/api/storage', controller.uploadControl)
-      app.get('/getFile/:name', controller.getFile)
+      app.get('/getFile', controller.getFile)
    }
 }

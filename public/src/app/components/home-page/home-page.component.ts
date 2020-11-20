@@ -5,7 +5,7 @@ import { ApiService } from '../../core/services/api.service';
 import { LoaderService } from '../providers/loaderService';
 import * as XLSX from 'xlsx';
 import { SharedService } from '../../shared/shared.service';
-import { MsalService } from '@azure/msal-angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-page',
@@ -15,12 +15,13 @@ import { MsalService } from '@azure/msal-angular';
 export class HomePageComponent implements OnInit {
   selectedTab = '1';
   cardData: any[];
+  profile;
   constructor(private _location: Location,
     private router: Router,
     private apiService: ApiService,
     private sharedService: SharedService,
     private loaderService: LoaderService,
-    private _msalService: MsalService) {
+    private http: HttpClient) {
   }
   ngOnInit(): void {
     sessionStorage.removeItem("cat");
@@ -28,7 +29,15 @@ export class HomePageComponent implements OnInit {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("result");
     this.getData();
+    this.testData();
   }
+
+  testData() {
+    this.apiService.testAPI().subscribe(data => {
+      console.log(data)
+    })
+  }
+
 
 
 

@@ -9,8 +9,8 @@ import { SharedService } from '../../shared/shared.service';
 import { Router } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
 import { LoaderService } from '../providers/loaderService';
-const uploadURL = '../../../assets/excel';
 import { MsalService } from '@azure/msal-angular';
+const uploadURL = '../../../assets/excel';
 
 @Component({
   selector: 'app-user-search',
@@ -23,7 +23,7 @@ export class settingsComponent implements OnInit {
   refrenceData: any;
   excelData: any;
   uploadedFileToSend: any;
-  isAdmin = false;
+  isAdmin = true;
   constructor(
     private _location: Location,
     private sharedService: SharedService,
@@ -32,7 +32,10 @@ export class settingsComponent implements OnInit {
     private apiService: ApiService,
     private loaderService: LoaderService,
     private _msalService: MsalService
-  ) { this.getAuthDetails(); }
+  ) {
+    this.getAuthDetails();
+  }
+
   ngOnInit() {
   }
 
@@ -102,13 +105,15 @@ export class settingsComponent implements OnInit {
         const formData = new FormData();
         formData.append('file', this.uploadedFileToSend);
         this.apiService.uploadFile(formData).subscribe(data => {
+          console.log(data)
         });
         this.sharedService.excelData = this.excelData;
         this.sharedService.refrenceData = this.refrenceData;
         this.router.navigateByUrl('/home');
-      }, 3000);
+      }, 5000);
       this.loaderService.hide();
 
     }
   }
+
 }

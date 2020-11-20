@@ -19,6 +19,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LoaderService } from './components/providers/loaderService';
 import { environment } from '../environments/environment';
+import { HTTP_INTERCEPTORS, HttpClientModule  } from '@angular/common/http';
 import { Configuration } from 'msal';
 import {
   MsalModule,
@@ -29,7 +30,8 @@ import {
   MsalAngularConfiguration
 } from '@azure/msal-angular';
 import { MsalGuard } from '@azure/msal-angular';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
 function MSALConfigFactory(): Configuration {
   return {
@@ -53,52 +55,51 @@ function MSALAngularConfigFactory(): MsalAngularConfiguration {
   };
 }
 
+
 const routes: Route[] = [
   {
     path: '',
-    pathMatch: 'full',
     redirectTo: 'home',
-    canActivate: [MsalGuard]
-  },
-  {
-    path: 'login',
-    pathMatch: 'full',
-    component: LoginComponent,
-    canActivate: [MsalGuard]
-  },
-  {
-    path: 'category',
-    pathMatch: 'full',
-    component: SubcatagoryComponent,
-    canActivate: [MsalGuard]
-  },
-  {
-    path: 'reports',
-    component: ReportsComponent,
-    canActivate: [MsalGuard],
-  },
-  {
-    path: 'reports-search',
-    component: UserSearchComponent,
+    pathMatch: 'prefix',
     canActivate: [MsalGuard]
   },
   {
     path: 'home',
     component: HomePageComponent,
-    canActivate: [MsalGuard]
+    canActivate: [MsalGuard],
+
+  },
+  {
+    path: 'redirect',
+    component: AppComponent,
+    canActivate: [MsalGuard],
+    pathMatch: 'prefix',
+  },
+  {
+    // Needed for hash routing
+    path: 'code',
+    component: HomePageComponent
+  },
+  {
+    path: 'category',
+    pathMatch: 'full',
+    component: SubcatagoryComponent
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent
+  },
+  {
+    path: 'reports-search',
+    component: UserSearchComponent
   },
   {
     path: 'settings',
-    component: settingsComponent,
-    canActivate: [MsalGuard]
-  },
-  {
-    path: 'id_token',
-    component: HomePageComponent,
-    canActivate: [MsalGuard]
-  },
-  
+    component: settingsComponent
+  }
 ];
+
+const isIframe = window !== window.parent && !window.opener;
 
 @NgModule({
   declarations: [
@@ -118,9 +119,33 @@ const routes: Route[] = [
     NgtUniversalModule,
     SharedModule,
     CoreModule,
-    RouterModule.forRoot(routes, { enableTracing: false, initialNavigation: 'enabled' }),
+    RouterModule.forRoot(routes, { useHash: true, initialNavigation: !isIframe ? 'enabled' : 'disabled' }),
     FormsModule,
-    MsalModule
+    HttpClientModule,
+    MsalModule.forRoot({
+      auth: {
+        clientId: environment.clientId,
+        authority: environment.authority,
+        redirectUri: environment.redirectUrl,
+      },
+      cache: {
+        cacheLocation: 'localStorage',
+        storeAuthStateInCookie: isIE, // set to true for IE 11
+      },
+    },
+    {
+      popUp: !isIE,
+      consentScopes: [
+        'user.read',
+        'openid',
+        'profile',
+      ],
+      unprotectedResources: [],
+      protectedResourceMap: [
+        ['https://graph.microsoft.com/v1.0/me', ['user.read']]
+      ],
+      extraQueryParameters: {}
+    })
   ],
   providers: [
     {
@@ -129,18 +154,9 @@ const routes: Route[] = [
       multi: true
     },
     {
-      provide: MSAL_CONFIG,
-      useFactory: MSALConfigFactory
-    },
-    {
-      provide: MSAL_CONFIG_ANGULAR,
-      useFactory: MSALAngularConfigFactory
-    },
-    {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
     },
-    MsalService,
     LoaderService
   ],
   bootstrap: [AppComponent],

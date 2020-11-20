@@ -21,7 +21,10 @@ export class SharedService {
   }
 
   readExcel() {
-    var testUrl = environment.readFileUrl;
+
+    // var testUrl = './assets/excel/CM3D_Report_Inventory.xlsx'; //server
+    var testUrl = '../../assets/excel/CM3D_Report_Inventory.xlsx'; //local
+    
 
     let jsonData: any;
     let refrenceJsonData: any;

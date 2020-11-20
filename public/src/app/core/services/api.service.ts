@@ -75,8 +75,18 @@ export class ApiService {
   uploadFile(formdata) {
     const url = this.getApiEndpoint(`storage`);
     let headers: any = {
-      "Access-Control-Allow-Origin": "*"
+      "Access-Control-Allow-Origin": "*",
+      // "responseType": "HTML"
     }
     return this.httpService.post<any>(url, formdata, headers);
+  }
+
+  testAPI() {
+    const url = this.getApiEndpoint(`getFile`);
+    let headers: any = {
+      "Access-Control-Allow-Origin": "*",
+      // "responseType": "HTML"
+    }
+    return this.httpService.get<any>(url, headers);
   }
 }

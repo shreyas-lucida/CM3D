@@ -21,27 +21,8 @@ class ConfigurationSetup {
         };
     }
     init(fn) {
-        if (ConfigurationSetup.INIT_STATUS === true)
-            return;
-        // Configs.MainDb.authenticate()
-        //     .then(() => {
-        //         console.log(REST_CONSTANTS.DB_SUCCESS);
-        //          // initialize environment
-        //          this.initConfigsByEvnironment();
-        //     })
-        //     .catch(err => {
-        //         console.error(REST_CONSTANTS.DB_CONNECTION_FAILURE, err);
-        //     });
     }
     retrieveConfigs(callback) {
-        // EnvConfig.findAll({ configEvn: process.env.environment }).then(
-        //     configs => {
-        //         callback(configs);
-        //     }, err => {
-        //         console.log('APP INITIALIZATION ERROR: ', err.message);
-        //         this.INITIALIZED = false;
-        //     }
-        // );
     }
 }
 ConfigurationSetup.INIT_STATUS = false;

@@ -16,6 +16,7 @@
     "Sequelize"
   ],
   "dependencies": {
+    "adal-node": "^0.2.1",
     "archiver": "^3.0.0",
     "body-parser": "1.18.3",
     "class-validator": "^0.12.2",

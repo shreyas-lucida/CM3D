@@ -1,5 +1,4 @@
 import { ToastrService } from 'ngx-toastr';
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -74,6 +73,7 @@ export class UserSearchComponent implements OnInit {
   ngOnInit() {
     this.pocTest1();
   }
+
   globalSearch(value) {
     this.searchValue = value;
     this.isSearch = false
